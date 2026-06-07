@@ -11,6 +11,7 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
+      background-color: #ffffff;
     }
 
     iframe {
@@ -23,10 +24,26 @@
 <body>
 
   <iframe
-    src="https://script.google.com/macros/s/AKfycbwEAyFJ2NlWHP30MA8xEebEkMdyjUBo5Qd9bCASGCwf2X0PfMxr-E7bBIelJxbXbCC3/exec"
+    id="scriptIframe"
     loading="lazy"
     referrerpolicy="no-referrer"
   ></iframe>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      // URL base do seu Google Apps Script Executável
+      const scriptBaseUrl = "https://script.google.com/macros/s/AKfycbwEAyFJ2NlWHP30MA8xEebEkMdyjUBo5Qd9bCASGCwf2X0PfMxr-E7bBIelJxbXbCC3/exec";
+      
+      // Captura os parâmetros da URL atual do seu site (ex: ?token=123&status=ok)
+      const queryString = window.location.search;
+      
+      // Combina a URL do script com os parâmetros capturados
+      const finalUrl = scriptBaseUrl + queryString;
+      
+      // Injeta a URL final com o token dentro do iframe
+      document.getElementById('scriptIframe').src = finalUrl;
+    });
+  </script>
 
 </body>
 </html>
